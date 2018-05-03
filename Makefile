@@ -5,14 +5,14 @@
 CC := g++
 SRCDIR := source
 BUILDDIR := build
-TARGET := bin/rtype
+TARGET := bin/test
 
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g -Wextra -Wall
+CFLAGS := -g -Wextra -Wall -std=c++11
 LIB := -lsfml-graphics -lsfml-window -lsfml-system
-INC := -I include
+INC := -I header
 
 $(TARGET): $(OBJECTS)
 	@echo "Linking objects ..."
