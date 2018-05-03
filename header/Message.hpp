@@ -5,11 +5,13 @@
 // It's currently the most basic form it can be in.
 // Later on, it'll have a Listener and a Messenger with specific function for the Listener.
 
+#include <string>
+
 class Message {
 
 public:
 
-  int	m_id; // @todo should be an ENUM;
-  auto	payload; // according to the type of message, we will have different kinds of payloads
+  int		m_id; // @todo should be an ENUM;
+  std::string	payload; // according to the type of message, we will have different kinds of payloads
   
 };
