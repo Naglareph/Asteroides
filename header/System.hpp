@@ -1,3 +1,5 @@
+#pragma once
+
 class System {
 public:
 
@@ -6,6 +8,8 @@ public:
 
   // Good practice to separate Initialization from the rest
   virtual void Init(void) = 0;
+
+  virtual void SendMessage() = 0;
 
   virtual ~System() {}
 };

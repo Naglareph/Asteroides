@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Systems.hpp"
 
 class Engine {
