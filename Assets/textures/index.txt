@@ -1,0 +1,3 @@
+MenuImageBackground     background.png
+MenuImageMiddleground   middleground.png
+MenuImageForground      forground.png
