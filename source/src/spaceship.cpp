@@ -3,14 +3,15 @@
 #include <iostream>
 
 const float Spaceship::acceleration = 100.0f;
-const float Spaceship::max_speed = 200.0f;
+const float Spaceship::max_speed = 150.0f;
 const float Spaceship::rotation_speed = 30.0f;
 
 Spaceship::Spaceship() {
-    shape.setPointCount( 3 );
+    shape.setPointCount(4);
     shape.setPoint(0, sf::Vector2f(10.0f, 0.0f));
     shape.setPoint(1, sf::Vector2f(-10.0f, 7.5f));
-    shape.setPoint(2, sf::Vector2f(-10.0f, -7.5f));
+    shape.setPoint(2, sf::Vector2f(-7.5f, 0));
+    shape.setPoint(3, sf::Vector2f(-10.0f, -7.5f));
 
     shape.setFillColor(sf::Color(0, 0, 0, 0));
     shape.setOutlineColor(sf::Color::White);
