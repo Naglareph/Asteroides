@@ -28,5 +28,5 @@ private:
     
     bool    isTextClicked(sf::Text text);
     void    loadgame();
-    void    animateBackground();
+    void    animateBackground(const float dt);
 };

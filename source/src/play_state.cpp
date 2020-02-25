@@ -2,19 +2,29 @@
 #include "menu_state.hpp"
 #include "game_state.hpp"
 
-#include "spaceship.hpp"
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
 void PlayState::draw(const float dt)
 {
-    game->window.draw(this->player);
+    game->window.draw(this->ship);
+
+    for (auto var : this->bullets)
+        this->game->window.draw(var);
 }
 
 void PlayState::update(const float dt)
 {
-    player.update(dt);
+    ship.update(dt);
+    auto i = this->bullets.begin();
+    while (i != this->bullets.end()) {
+        if (i->isAlive()) {
+            i->update(dt);
+            i++;
+        } else {
+            this->bullets.erase(i);
+        }
+    }
 }
 
 void PlayState::handleInput()
@@ -23,6 +33,7 @@ void PlayState::handleInput()
 
     while (this->game->window.pollEvent(event))
     {
+        this->ship.onEvent(event);
         switch (event.type)
         {
             /* Close the window */
@@ -35,8 +46,12 @@ void PlayState::handleInput()
                     case sf::Keyboard::Escape:
                         this->game->window.close();
                         break;
+                    case sf::Keyboard::Space: {
+                        Bullet bullet(ship.getPosition(), ship.getRotation());
+                        this->bullets.push_back(bullet);
+                        break;
+                    }
                     default:
-                        this->player.onEvent(event);
                         break;
                 }
                 break;

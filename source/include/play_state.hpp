@@ -1,9 +1,11 @@
 #pragma once
 
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 #include "game_state.hpp"
 #include "spaceship.hpp"
+#include "bullet.hpp"
 
 class PlayState : public GameState
 {
@@ -16,7 +18,9 @@ public:
      PlayState(Game* game);
 
 private:
-    Spaceship   player;
+    Spaceship   ship;
+
+    std::vector<Bullet> bullets;
 
     void PauseGame();
 };

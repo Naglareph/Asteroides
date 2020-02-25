@@ -8,6 +8,7 @@ class Spaceship: public sf::Drawable, public sf::Transformable {
     static const float acceleration;
     static const float max_speed;
     static const float rotation_speed;
+    static const float gravity;
 
     public:
         Spaceship();

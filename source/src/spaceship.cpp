@@ -1,10 +1,9 @@
 #include "spaceship.hpp"
 
-#include <iostream>
-
-const float Spaceship::acceleration = 100.0f;
-const float Spaceship::max_speed = 150.0f;
-const float Spaceship::rotation_speed = 30.0f;
+const float Spaceship::acceleration = 50.0f;
+const float Spaceship::max_speed = 5.0f;
+const float Spaceship::rotation_speed = 25.0f;
+const float Spaceship::gravity = 1.0f;
 
 Spaceship::Spaceship() {
     shape.setPointCount(4);
@@ -44,7 +43,7 @@ void Spaceship::update(float frametime) {
         rotate(h_move * rotation_speed * frametime);
     }
 
-    if (v_move != 0) {
+    if (v_move >= 0) {
         float rotation = getRotation();
         float x_speed = cos(rotation * DEG2RAD);
         float y_speed = sin(rotation * DEG2RAD);
@@ -56,6 +55,7 @@ void Spaceship::update(float frametime) {
         if ((speed.y * speed.y) > (max_speed * max_speed))
             speed.y = speed.y > 0 ? max_speed : -max_speed;
     }
+    
     move(speed);
 
     sf::Vector2f position = getPosition();

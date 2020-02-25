@@ -103,7 +103,7 @@ void MenuState::handleInput()
 
 void MenuState::update(const float dt)
 {
-    this->animateBackground();
+    this->animateBackground(dt);
 }
 
 void MenuState::draw(const float dt)
@@ -131,15 +131,15 @@ void MenuState::loadgame()
     game->pushState(new PlayState(game));
 }
 
-void			MenuState::animateBackground()
+void			MenuState::animateBackground(const float dt)
 { 
     for (int i = 1; i <= 4; i++) {
         if (i == 1 || i == 3) {
-            this->menuSprites[i].move(-2, 0);
+            this->menuSprites[i].move((-2 * dt) * 100, 0);
         } else {
-            this->menuSprites[i].move(-0.5, 0);
+            this->menuSprites[i].move((-0.5 * dt) * 100, 0);
         }
-        if (this->menuSprites[i].getPosition() == sf::Vector2f(-1000, 0))
+        if (this->menuSprites[i].getPosition().x <= -1000)
             this->menuSprites[i].setPosition(sf::Vector2f(1000, 0));
     }
 }
