@@ -5,11 +5,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-    // for (unsigned short i = 0; i < 3; i++) {
-    //     Asteroid body(0);
-    //     this->asteroids.push_back(body);
-    // }
-
 void PlayState::draw(const float dt)
 {
     game->window.draw(this->ship);
@@ -39,6 +34,14 @@ void PlayState::update(const float dt)
         } else {
             this->asteroids.erase(i);
             i--;
+        }
+    }
+
+    for (auto i = this->asteroids.begin(); i != this->asteroids.end(); i++) {
+        for (auto j = this->bullets.begin(); j != this->bullets.end(); j++) {
+            if (j->isAlive() && i->checkPoint(j->getPosition())) {
+                j->kill();
+            }
         }
     }
 }
