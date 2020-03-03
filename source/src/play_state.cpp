@@ -5,24 +5,40 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+    // for (unsigned short i = 0; i < 3; i++) {
+    //     Asteroid body(0);
+    //     this->asteroids.push_back(body);
+    // }
+
 void PlayState::draw(const float dt)
 {
     game->window.draw(this->ship);
 
     for (auto var : this->bullets)
         this->game->window.draw(var);
+    for (auto var : this->asteroids)
+        this->game->window.draw(var);
 }
 
 void PlayState::update(const float dt)
 {
     ship.update(dt);
-    auto i = this->bullets.begin();
-    while (i != this->bullets.end()) {
+
+    for (auto i = this->bullets.begin(); i != this->bullets.end(); i++) {
         if (i->isAlive()) {
             i->update(dt);
-            i++;
         } else {
             this->bullets.erase(i);
+            i--;
+        }
+    }
+
+    for (auto i = this->asteroids.begin(); i != this->asteroids.end(); i++) {
+        if (i->isAlive()) {
+            i->update(dt);
+        } else {
+            this->asteroids.erase(i);
+            i--;
         }
     }
 }
@@ -66,6 +82,10 @@ void PlayState::handleInput()
 PlayState::PlayState(Game* game)
 {
     this->game = game;
+    for (unsigned short i = 0; i < 3; i++) {
+        Asteroid body(0);
+        this->asteroids.push_back(body);
+    }
 }
 
 void PlayState::PauseGame()

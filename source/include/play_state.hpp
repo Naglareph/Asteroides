@@ -6,6 +6,7 @@
 #include "game_state.hpp"
 #include "spaceship.hpp"
 #include "bullet.hpp"
+#include "asteroid.hpp"
 
 class PlayState : public GameState
 {
@@ -15,12 +16,13 @@ public:
     virtual void update(const float dt);
     virtual void handleInput();
 
-     PlayState(Game* game);
+    PlayState(Game* game);
 
 private:
     Spaceship   ship;
 
-    std::vector<Bullet> bullets;
+    std::vector<Bullet>     bullets;
+    std::vector<Asteroid>   asteroids;
 
     void PauseGame();
 };
