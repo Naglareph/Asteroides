@@ -14,8 +14,6 @@ Asteroid::Asteroid(int level):
     int x = rand() % APP_WIDTH;
     int y = rand() % APP_HEIGHT;
 
-    std::cout << x << " - " << y << std::endl;
-
     sf::Vector2f position(x, y);
     setPosition(position);
     shape.setPointCount(8);

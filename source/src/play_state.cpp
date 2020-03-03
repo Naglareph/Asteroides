@@ -37,13 +37,24 @@ void PlayState::update(const float dt)
         }
     }
 
+    std::vector<Asteroid> new_asteroids;
     for (auto i = this->asteroids.begin(); i != this->asteroids.end(); i++) {
         for (auto j = this->bullets.begin(); j != this->bullets.end(); j++) {
             if (j->isAlive() && i->checkPoint(j->getPosition())) {
                 j->kill();
+                i->breakDown();
+
+                if (i->isAlive()) {
+                    sf::Vector2f position = i->getPosition();
+                    float angle = rand() % 360;
+                    Asteroid body{position, angle, i->getLevel()};
+                    new_asteroids.push_back(body);
+                }
+                break;
             }
         }
     }
+    this->asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
 }
 
 void PlayState::handleInput()
